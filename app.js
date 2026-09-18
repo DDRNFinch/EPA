@@ -62,7 +62,7 @@ shell(`<button class="btn ghost" data-course-home>‹ ${COURSE[course]}</button>
 <div class="card result-card"><div class="stats"><div class="stat"><b>${total}/${max}</b><span>Key points</span></div><div class="stat"><b>${avg}</b><span>Average words</span></div><div class="stat"><b>${discussionResults.filter(r=>r.words>100).length}</b><span>Very good length</span></div></div>
 ${discussionResults.map((r,i)=>`<div class="discussion-result-row"><b>Question ${i+1}</b><span>${r.score}/5 · ${r.words} words · ${discussionBand(r.words)}</span></div>`).join("")}
 <p class="result-note">This is a practice indicator. Word count is used to encourage fuller explanations; it is not an official EPA pass/fail decision.</p>
-<button class="btn" data-mode="discussion">Practise again</button></div>`)
+<button class="btn" id="saveDiscussion">Save test</button><button class="btn secondary" data-mode="discussion">Practise again</button></div>`);$("#saveDiscussion")?.addEventListener("click",()=>{saveTest("discussion",{total,max,percentage:Math.round(total/max*100),averageWords:avg,results:discussionResults});$("#saveDiscussion").textContent="Saved ✓";$("#saveDiscussion").disabled=true})
 }
 function speak(t){if("speechSynthesis"in window){const u=new SpeechSynthesisUtterance(t);u.lang="en-GB";u.rate=.92;speechSynthesis.cancel();speechSynthesis.speak(u)}}
 function practical(){const task=EPA_PRACTICALS[course];shell(`
