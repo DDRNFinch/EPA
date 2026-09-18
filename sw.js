@@ -1,4 +1,4 @@
-const CACHE="epa-v8";
+const CACHE="epa-v9";
 const A=["./","./index.html","./app.js","./styles.css","./questions.js","./maths.js","./english.js","./practicals.js","./discussion.js","./confidence.js","./manifest.webmanifest","./icon.png"];
 
 self.addEventListener("install",e=>{
@@ -19,15 +19,16 @@ self.addEventListener("activate",e=>{
 
 self.addEventListener("fetch",e=>{
   if(e.request.method!=="GET")return;
+
   const url=new URL(e.request.url);
   const sameOrigin=url.origin===self.location.origin;
-  const isFreshAsset=sameOrigin&&(url.pathname.endsWith(".html")||url.pathname.endsWith("/")||url.pathname.endsWith(".js")||url.pathname.endsWith(".webmanifest")||url.pathname.endsWith(".png"));
 
-  if(isFreshAsset){
-    // Always ask the network first for the app shell/code. The current
-    // service-worker cache is only the offline fallback.
+  if(sameOrigin){
+    // Online is always authoritative. Cache is an offline fallback only.
+    // This applies to CSS, JS, HTML, images, manifests and any future
+    // same-origin app assets, so a GitHub Pages change is not held stale.
     e.respondWith(
-      fetch(e.request,{cache:"no-cache"})
+      fetch(e.request,{cache:"no-store"})
         .then(response=>{
           if(response&&response.ok){
             const copy=response.clone();
@@ -40,14 +41,5 @@ self.addEventListener("fetch",e=>{
     return;
   }
 
-  e.respondWith(
-    caches.match(e.request,{ignoreSearch:true})
-      .then(cached=>cached||fetch(e.request).then(response=>{
-        if(response&&response.ok&&sameOrigin){
-          const copy=response.clone();
-          caches.open(CACHE).then(c=>c.put(e.request,copy)).catch(()=>{});
-        }
-        return response;
-      }).catch(()=>cached))
-  );
+  e.respondWith(fetch(e.request));
 });
