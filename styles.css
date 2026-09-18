@@ -571,3 +571,63 @@ body{
 .academic-intro{
   display:none;
 }
+
+/* Mobile readability pass — increase text and tap-target sizing only. */
+@media(max-width:800px){
+  body{font-size:15px}
+  .title{font-size:17px}
+  .eyebrow,.tag{font-size:10px}
+  .hero h1{font-size:44px}
+  .hero p{font-size:15px;line-height:1.5}
+  .course h2,.module h3{font-size:19px}
+  .course p,.module p{font-size:13px;line-height:1.45}
+  .course>.muted,.modules .module>.muted{font-size:12px}
+  .pill{font-size:10px;padding:6px 9px}
+  .readiness-number{font-size:38px}
+  .readiness .muted{font-size:12px}
+  .test-confidence h2,.academic-section h2{font-size:20px}
+  .test-confidence>p,.academic-section p{font-size:12px;line-height:1.45}
+  .test-confidence-head b{font-size:12px}
+  .test-confidence-head small{font-size:10px}
+  .test-confidence-head strong{font-size:16px}
+  .question-focus h1,.question-card>h1{font-size:25px;line-height:1.2}
+  .qmeta{font-size:9px}
+  .answer{font-size:14px;line-height:1.45;padding:11px;min-height:56px}
+  .answer .letter{width:24px;height:24px;flex-basis:24px;font-size:11px}
+  .answer-result b{font-size:14px}
+  .answer-result p{font-size:15px;line-height:1.4}
+  .answer-result .muted{font-size:12px;line-height:1.45}
+  .mcq-feedback>.btn,.academic-module .btn{font-size:12px;min-height:42px}
+  .discussion-points li{font-size:13px;line-height:1.45}
+  .question-card>.muted,.discussion-tip{font-size:12px;line-height:1.45}
+  .question-card textarea{font-size:14px;line-height:1.45}
+  .sectionhead h2{font-size:23px}
+  .sectionhead .muted{font-size:12px}
+  .brief-item,.check{font-size:13px;line-height:1.45}
+  .mark-row b{font-size:13px}
+  .mark-row small{font-size:10px;line-height:1.4}
+  .measure,select{font-size:13px}
+  .confidence-grid h2{font-size:20px}
+  .confidence-grid .muted{font-size:12px}
+  .confidence-row{font-size:12px}
+  .confidence-row small{font-size:10px}
+  .practice-alert span{font-size:11px}
+  .skill-row b{font-size:13px}
+  .skill-row small{font-size:10px}
+  .academic-module h3{font-size:19px}
+  .academic-readiness-number{font-size:32px}
+  .academic-module p{font-size:11px;line-height:1.4}
+  .deep-card h2{font-size:20px}
+  .deep-card>.muted{font-size:11px}
+  .deep-focus{font-size:12px}
+  .deep-focus span{font-size:11px}
+  .academic-topic-row b{font-size:12px}
+  .academic-topic-row small{font-size:10px}
+  .academic-topic-row strong{font-size:13px}
+}
+@media(max-width:390px){
+  .hero h1{font-size:40px}
+  .question-focus h1,.question-card>h1{font-size:23px}
+  .answer{font-size:13px}
+  .course h2,.module h3{font-size:18px}
+}
