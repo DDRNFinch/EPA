@@ -24,7 +24,7 @@ function mcq(){if(index>=questions.length){const pct=Math.round(score/questions.
 current=questions[index];shell(`<button class="btn ghost" data-course-home>‹ ${COURSE[course]}</button><div class="question"><div class="qmeta"><span>QUESTION ${index+1} OF ${questions.length}</span>${badge(current[0])}</div><div class="card question-card"><div class="question-focus"><div class="eyebrow">${current[0][0]==="K"?"KNOWLEDGE":current[0][0]==="S"?"SKILL":"BEHAVIOUR"} · ${current[0]}</div><h1>${esc(current[1])}</h1></div><div class="answers">${shuffle(current[2]).map((o,i)=>`<button class="answer" data-answer="${encodeURIComponent(o)}"><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o)}</span></button>`).join("")}</div></div></div>`)}
 function wordCount(text){return text.trim()?text.trim().split(/\s+/).length:0}
 function discussionBand(words){return words<50?"Requires more":words<=100?"Adequate":"Very good"}
-function discussion(){const d=discussionSet[discussionIndex];const result=discussionResults[discussionIndex];const progress=discussionIndex+1;
+function hasDiscussionTerm(text,term){const escaped=term.replace(/[.*+?^${}()|[\\]\\]/g,"\\\\function discussion(){");return new RegExp("(^|\\\\s)"+escaped+"($|\\\\s)","i").test(text)}\nfunction discussion(){const d=discussionSet[discussionIndex];const result=discussionResults[discussionIndex];const progress=discussionIndex+1;
 shell(`
 <button class="btn ghost" data-course-home>‹ ${COURSE[course]}</button><div class="question">
 <div class="qmeta"><span>PROFESSIONAL DISCUSSION · QUESTION ${progress} OF ${discussionSet.length}</span><span class="pill">Practice</span></div>
@@ -39,7 +39,7 @@ const answer=$("#answer");
 answer?.addEventListener("input",()=>{const n=wordCount(answer.value);$("#wordCount").textContent=n;$("#wordBand").textContent=discussionBand(n)});
 }
 function scoreDiscussion(){const answer=($("#answer")?.value||"").trim();if(!answer){alert("Enter an answer first.");return}const d=discussionSet[discussionIndex],low=answer.toLowerCase();
-const found=d.points.filter(p=>p.terms.some(t=>low.includes(t))).map(p=>p.label),missed=d.points.filter(p=>!found.includes(p.label)).map(p=>p.label),words=wordCount(answer);
+const found=d.points.filter(p=>p.terms.some(t=>hasDiscussionTerm(low,t))).map(p=>p.label),missed=d.points.filter(p=>!found.includes(p.label)).map(p=>p.label),words=wordCount(answer);
 discussionResults[discussionIndex]={answer,words,score:found.length,found,missed};store[course]??={};store[course].d=Math.max(store[course].d||0,discussionResults.reduce((a,r)=>a+(r?.score||0),0)/(discussionSet.length*5));save();
 if(discussionIndex<discussionSet.length-1){discussionIndex++;discussion()}else discussionComplete()
 }
