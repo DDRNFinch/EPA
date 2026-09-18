@@ -1,4 +1,4 @@
-const CACHE="epa-v7";
+const CACHE="epa-v8";
 const A=["./","./index.html","./app.js","./styles.css","./questions.js","./maths.js","./english.js","./practicals.js","./discussion.js","./confidence.js","./manifest.webmanifest","./icon.png"];
 
 self.addEventListener("install",e=>{
@@ -21,9 +21,9 @@ self.addEventListener("fetch",e=>{
   if(e.request.method!=="GET")return;
   const url=new URL(e.request.url);
   const sameOrigin=url.origin===self.location.origin;
-  const isAppCode=sameOrigin&&(/\.js$/.test(url.pathname)||url.pathname.endsWith(".html")||url.pathname.endsWith("/"));
+  const isFreshAsset=sameOrigin&&(url.pathname.endsWith(".html")||url.pathname.endsWith("/")||url.pathname.endsWith(".js")||url.pathname.endsWith(".webmanifest")||url.pathname.endsWith(".png"));
 
-  if(isAppCode){
+  if(isFreshAsset){
     // Always ask the network first for the app shell/code. The current
     // service-worker cache is only the offline fallback.
     e.respondWith(
