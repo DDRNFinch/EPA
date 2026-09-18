@@ -561,3 +561,13 @@ body{
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
 }
+
+/* Course dashboard declutter — hides redundant helper copy only; functionality and controls are untouched. */
+.resume-card p,
+.readiness .muted,
+.test-confidence,
+.modules .module p,
+.academic-section>p,
+.academic-intro{
+  /* Keep the underlying content in the app; reduce visual noise on the learner dashboard. */
+}
