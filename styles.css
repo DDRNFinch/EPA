@@ -562,12 +562,12 @@ body{
   *{scroll-behavior:auto!important}
 }
 
-/* Course dashboard declutter — hides redundant helper copy only; functionality and controls are untouched. */
+/* Course dashboard declutter — visual presentation only; underlying data and controls remain unchanged. */
 .resume-card p,
 .readiness .muted,
 .test-confidence,
 .modules .module p,
 .academic-section>p,
 .academic-intro{
-  /* Keep the underlying content in the app; reduce visual noise on the learner dashboard. */
+  display:none;
 }
