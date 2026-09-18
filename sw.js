@@ -1,5 +1,5 @@
-const CACHE="epa-v6";
-const A=["./","./index.html","./app.js","./styles.css","./questions.js","./maths.js","./english.js","./practicals.js","./discussion.js","./confidence.js","./manifest.webmanifest","./icon.svg"];
+const CACHE="epa-v7";
+const A=["./","./index.html","./app.js","./styles.css","./questions.js","./maths.js","./english.js","./practicals.js","./discussion.js","./confidence.js","./manifest.webmanifest","./icon.png"];
 
 self.addEventListener("install",e=>{
   e.waitUntil(
