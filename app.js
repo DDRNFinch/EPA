@@ -25,7 +25,7 @@ current=questions[index];shell(`<button class="btn ghost" data-course-home>‹ $
 function wordCount(text){return text.trim()?text.trim().split(/\s+/).length:0}
 function discussionBand(words){return words<50?"Requires more":words<=100?"Adequate":"Very good"}
 function hasDiscussionTerm(text,term){const normalized=(" "+text.toLowerCase().replace(/[^a-z0-9]+/g," ")+" ");return normalized.includes(" "+term.toLowerCase()+" ")}
-function discussion(){");return new RegExp("(^|\\\\s)"+escaped+"($|\\\\s)","i").test(text)}\nfunction discussion(){const d=discussionSet[discussionIndex];const result=discussionResults[discussionIndex];const progress=discussionIndex+1;
+function discussion(){const d=discussionSet[discussionIndex];const result=discussionResults[discussionIndex];const progress=discussionIndex+1;
 shell(`
 <button class="btn ghost" data-course-home>‹ ${COURSE[course]}</button><div class="question">
 <div class="qmeta"><span>PROFESSIONAL DISCUSSION · QUESTION ${progress} OF ${discussionSet.length}</span><span class="pill">Practice</span></div>
